@@ -1,4 +1,5 @@
-const socket = io();
+const socket = io('https://proyect-jss.onrender.com');
+
 
 const nicknameContainer = document.getElementById('nickname-container');
 const nicknameInput = document.getElementById('nickname-input');
