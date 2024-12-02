@@ -92,7 +92,7 @@ function updateUserStatus(username, status) {
 
 // Función para reproducir sonido de notificación
 function playNotificationSound() {
-    const audio = new Audio('notification.mp3'); // Reemplazar con la ruta de tu archivo de sonido
+    const audio = new Audio('notificacion.mp3'); // Reemplazar con la ruta de tu archivo de sonido
     audio.play();
 }
 
