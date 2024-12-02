@@ -8,6 +8,9 @@ const io = socketIo(server);
 
 app.use(express.static(__dirname));
 
+// Middleware para parsear JSON
+app.use(express.json());
+
 io.on('connection', (socket) => {
     console.log('a user connected');
     socket.broadcast.emit('user connected', 'Un usuario se ha conectado');
@@ -31,6 +34,15 @@ io.on('connection', (socket) => {
     });
 });
 
-server.listen(3000, () => {
-    console.log('listening on *:3000');
+// Ruta para manejar solicitudes POST a /chat
+app.post('/chat', (req, res) => {
+    const { username, message } = req.body;
+    io.emit('chat message', { username, message });
+    res.status(200).send('Mensaje enviado');
+});
+
+// Usar el puerto proporcionado por Render o 3000 como fallback
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+    console.log(`listening on *:${PORT}`);
 });
