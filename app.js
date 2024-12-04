@@ -1,6 +1,5 @@
 const socket = io();
 
-
 const nicknameContainer = document.getElementById('nickname-container');
 const nicknameInput = document.getElementById('nickname-input');
 const joinChatButton = document.getElementById('join-chat-button');
@@ -49,7 +48,7 @@ messageInput.addEventListener('input', () => {
 socket.on('chat message', (msg) => {
     const item = document.createElement('div');
     item.classList.add('message', msg.username === username ? 'my-message' : 'other-message');
-    item.textContent = msg.message;
+    item.innerHTML = `<strong>${msg.username}:</strong> ${msg.message}`; // Mostrar el nombre del usuario
     messages.appendChild(item);
     messages.scrollTop = messages.scrollHeight;
     playNotificationSound(); // Reproducir sonido de notificación
@@ -96,4 +95,3 @@ function playNotificationSound() {
     const audio = new Audio('notificacion.mp3'); // Reemplazar con la ruta de tu archivo de sonido
     audio.play();
 }
-
